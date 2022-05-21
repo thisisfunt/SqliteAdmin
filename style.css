@@ -78,4 +78,46 @@ body{
 	margin-top: 0px;
 }
 
+.login_content{
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.login_form {
+	width: 488px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 32px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin-top: 60px;
+}
+
+.login_form input{
+	margin: 16px;
+	width: 480px;
+	font-size: 32px;
+	text-align: center;
+}
+
+.login_form input[type="submit"] {
+	margin-top: 48px;
+}
+
+
+.content .user_name {
+	text-align: center;
+}
+
+.content .user_status {
+	text-align: center;
+}
+
+.content .logout_ref {
+	text-align: center;
+}
+
 

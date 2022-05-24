@@ -2,8 +2,8 @@
 <?php 
 	if (isset($_POST['name']) && isset($_POST['password'])){
 		$pdo = new PDO('sqlite:'.DB_NAME);
-		//$statement = $pdo->query("SELECT * FROM Users WHERE name='".$_POST['name']."' AND password='".$_POST['//']."';");
-		$statement = $pdo->query("SELECT * FROM Users WHERE name='user' AND password='user';");
+		$statement = $pdo->query("SELECT * FROM Users WHERE name='".$_POST['name']."' AND password='".$_POST['password']."';");
+		//$statement = $pdo->query("SELECT * FROM Users WHERE name='user' AND password='user';");
 		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 		echo count($rows);
 		if (count($rows) != 0) {
@@ -28,7 +28,7 @@
 		<form action="" class="login_form" method="POST">
 			<input type="text" name="name" placeholder="name">
 			<input type="text" name="password" placeholder="password">
-			<input type="submit" value="submit" width="722px">
+			<input type="submit" value="login" width="722px">
 		</form>
 	</div>
 </body>

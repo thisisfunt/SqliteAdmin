@@ -120,4 +120,56 @@ body{
 	text-align: center;
 }
 
+.content .edit_form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
 
+.content .edit_form .line{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.content .edit_form label {
+	font-size: 32px;
+}
+
+.content .edit_form textarea {
+	max-width: 100%;
+	font-size: 32px;
+	min-height: 80px;
+	box-sizing: border-box;
+}
+
+.content .edit_form input[type=submit] {
+	margin-top: 64px;
+	max-width: 100%;
+	font-size: 32px;
+	min-height: 80px;
+}
+
+.insert_form {
+	width: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 32px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin-top: 60px;
+}
+
+.insert_form textarea{
+	width: 100%;
+	margin: 16px;
+	font-size: 16px;
+	resize: vertical;
+	min-height: 44px;
+}
+
+.insert_form input[type=submit] {
+	width: 98%;
+	font-size: 32px;
+}

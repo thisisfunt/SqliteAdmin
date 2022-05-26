@@ -1,5 +1,33 @@
 <?php include 'config.php'; ?>
 <?php include 'res/templates/is_auth.php'; ?>
+
+<?php 
+	if (!isset($_GET['name'])){
+		header('location: '.ADMIN_REF_PREFIX);
+		die();
+	}
+	$pdo = new PDO('sqlite:'.DB_NAME);
+	$statement = $pdo->query("SELECT * FROM ".$_GET['name']);
+	$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+	if (count($rows) == 0) {
+		header("location: ".ADMIN_REF_PREFIX);
+		die();
+	}
+
+	if (isset($_POST['table_name'])) {
+		$table_name = $_POST['table_name'];
+		$param_list = array_slice($_POST, 1);
+		$db_request = 'INSERT INTO '.$table_name.' VALUES (NULL, ';
+		foreach ($param_list as $key => $value) {
+			$db_request .= '"'.$value.'", ';
+		}
+		$db_request = substr($db_request,0,-2);
+		$db_request .= ');';
+		$pdo->exec($db_request);
+		header("location: ".ADMIN_REF_PREFIX."/table.php?name=".$table_name);
+		die();
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +41,8 @@
 	<div class="content">
 		<table>
 			<?php 
-				if (!isset($_GET['name'])){
-					header('location: '.ADMIN_REF_PREFIX);
-					die();
-				}
-				$pdo = new PDO('sqlite:'.DB_NAME);
-				$statement = $pdo->query("SELECT * FROM ".$_GET['name']);
-				$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+				
+
 				foreach ($rows[0] as $key => $value) { ?>
 					<th><?php echo $key ?></th>
 				<?php } 
@@ -39,13 +62,14 @@
 		 </table>
 
 		 <form action="" method="POST" class="insert_form">
-					<?php 
-						foreach ($rows[0] as $key => $value) { 
-							if ($key != 'id') { ?>
-								<textarea name="<?php echo $key ?>" placeholder="<?php echo $key ?>"></textarea>
+		 	<input type="text" name="table_name" hidden="true" value="<?php echo $_GET['name'] ?>">
+				<?php 
+					foreach ($rows[0] as $key => $value) { 
+						if ($key != 'id') { ?>
+							<textarea name="<?php echo $key ?>" placeholder="<?php echo $key ?>"></textarea>
 						<?php }
-						} ?>
-					<input type="submit" value="edit">
-				</form>
+					} ?>
+			<input type="submit" value="insert">
+		</form>
 	</div>
 </body>

@@ -3,9 +3,7 @@
 	if (isset($_POST['name']) && isset($_POST['password'])){
 		$pdo = new PDO('sqlite:'.DB_NAME);
 		$statement = $pdo->query("SELECT * FROM Users WHERE name='".$_POST['name']."' AND password='".$_POST['password']."';");
-		//$statement = $pdo->query("SELECT * FROM Users WHERE name='user' AND password='user';");
 		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-		echo count($rows);
 		if (count($rows) != 0) {
 			setcookie("name", $_POST['name'], time() + 86400, "/");
 			setcookie("password", $_POST['password'], time() + 86400, "/");

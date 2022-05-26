@@ -1,6 +1,7 @@
 <?php include 'config.php'; ?>
 <?php include 'res/templates/is_auth.php'; ?>
 
+
 <?php 
 	if (isset($_POST['table_name']) && isset($_POST['id'])) {
 		$table_name = $_POST['table_name'];
@@ -60,6 +61,11 @@
 				}
 			?>
 			<input type="submit" value="insert">
+		</form>
+		<form action="delete.php" method="POST" class="delete_form">
+			<input type="text" name="table_name" hidden="true" value="<?php echo $_GET['name'] ?>">
+			<input type="text" name="id" hidden="true" value="<?php echo $_GET['id'] ?>">
+			<input type="submit" value="delete">
 		</form>
 	</div>
 </body>
